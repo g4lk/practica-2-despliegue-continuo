@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-deploy
+  namespace: default
+  labels:
+    app: library
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: library
+  template:
+    metadata:
+      labels:
+        app: library
+    spec:
+      securityContext:
+        runAsUser: 1000
+      restartPolicy: Always
+      containers:
+      - name: library
+        image: parlaga/4.4-p.2-library:v1
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:mysql://mysql-svc:3306/test
+        ports:
+        - containerPort: 8881
+        securityContext:
+          allowPrivilegeEscalation: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: library-svc
+  namespace: default
+  labels:
+    app: library
+spec:
+  ports:
+  - port: 8881
+    targetPort: 8881
+    protocol: TCP
+    name: library-port
+  selector:
+    app: library
+  type: ClusterIP
