@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql-deploy
-  namespace: default
+  namespace: test
 spec:
   replicas: 1
   selector:
@@ -30,7 +30,7 @@ metadata:
   name: mysql-svc
   labels:
     app: mysql-deploy
-  namespace: default
+  namespace: test
 spec:
   ports:
   - port: 3306

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: library-deploy
-  namespace: default
+  namespace: test
   labels:
     app: library
 spec:
@@ -33,7 +33,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: library-svc
-  namespace: default
+  namespace: test
   labels:
     app: library
 spec:
