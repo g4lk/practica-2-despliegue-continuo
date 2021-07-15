@@ -31,7 +31,11 @@
     kubectl apply -f k8s/gateway.yml
 ```
 ## Probamos canary actualizando version de aplicación
-
+```
+    kubectl set image deployments/library-deploy library=parlaga/4.4-p.2-library:v2
+    kubectl set image deployments/library-deploy library=parlaga/4.4-p.2-library:v3
+    kubectl set image deployments/library-deploy library=parlaga/4.4-p.2-library:v4
+```
 
 
 

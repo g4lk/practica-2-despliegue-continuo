@@ -1,16 +1,16 @@
 apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
-  name: library-canary
+  name: library
   namespace: test
 spec:
   targetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: library-deploy
+    name: library
   service:
     port: 8881
-    portName: library-port
+    targetPort: 8881
     gateways:
     - public-gateway.istio-system.svc.cluster.local
     hosts:
@@ -20,7 +20,7 @@ spec:
         mode: DISABLE
     retries:
       attempts: 3
-      perTryTimeout: 1s
+      perTryTimeout: 2s
       retryOn: "gateway-error,connect-failure,refused-stream"
   analysis:
     interval: 30s

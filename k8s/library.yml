@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: library-deploy
+  name: library
   namespace: test
   labels:
     app: library
@@ -24,6 +24,8 @@ spec:
         env:
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://mysql-svc:3306/test
+        - name: SERVER_PORT
+          value: "8881"
         ports:
         - containerPort: 8881
         securityContext:
@@ -32,7 +34,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: library-svc
+  name: library
   namespace: test
   labels:
     app: library
