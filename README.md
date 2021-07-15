@@ -87,7 +87,7 @@ Acceder a localhost:3000
 ```
 
 - Se realizan test de aceptación y de carga sobre el canary
-Flagger por defecto crea dos servicios cuando se actualiza la version (primary y canary).
+Flagger crea dos servicios para redirigir el tráfico se actualiza la version (primary y canary).
 Lanzamos test contra el canary mediante el load tester anteriormente desplegado. 
 ```yaml
     webhooks:
